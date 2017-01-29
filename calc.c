@@ -5,6 +5,11 @@
 #define MAX 100
 #define pi 3.14159265359
 #define e 2.71828
+#define a answer
+#define A answer
+
+float compute();
+char angle_type;
 
 typedef struct stack
 {
@@ -12,26 +17,30 @@ typedef struct stack
  int top;
 }stack;
 
+float answer=0.0;
+
+
 void user_manual()
 {
-printf("\n\nUser Manual:\nAll copyrights reserved with VINIT KUMAR SINGH (vinitsingh@gmail.com) \n\nThis is a scientific calcultor which can easily compute value of an entered expression and also implements BODMAS rule i.e. it can also manage brackets. One can use numerous functionality present in it like mathematical functions, performing marix operation, solving quadratic equation and a system of linear equations. It also has a convertor that converts among decimal, hexadecimal, binary and octal numbers and converts among a number of physical quantities.");
+printf("\n\nUser Manual:\n\nAll copyrights reserved with VINIT KUMAR SINGH (vinitsingh@gmail.com) \n\nThis is a scientific calcultor which can easily compute value of an entered expression and also implements BODMAS rule \ni.e. (2+3)*4/5+2 will result into 6.\nYou can use operators  +,-,*,/,mod,^,(,) .\nYou can also use letter 'a' to access the answer obtained in previous computations.\nFor example if answer was 2 then writing a+a will result in 4.\nAfter entering the expression you can press enter and then answer will be displayed.\nOne can use numerous trigonometric and mathematical functions present in it.\n");
 }
-int display()
+char display()
 {
-	int ch;
+	char ch;
 
 	printf("\n\n                         Home Page                   \n");
 	printf("1. User Manual                   2. Basic Computation    \n");
 	printf("3. Trigonometry                  4. Mathematical Functions\n");
-	printf("5. Matrix                        6. Equations            \n");
-	printf("7. Convertor                     8. Complex Numbers      \n");
-	printf("9. Permuatation and Combination\n");
+	printf("5. Permuatation and Combination	 \n");
 	printf("0. Exit\n");
-	scanf("%d",&ch);
+	printf("\n				Ans: %f\n",answer);
+
+	scanf("%c",&ch);
+	getchar();
 	return(ch);
 }
 //---------------------------------------------------------------------------------------------------------------------------------TRIGO
-float trigo()
+void trigo()
 {
 	int ch;float num;
 	printf("Trigonometry:\n");
@@ -41,87 +50,113 @@ float trigo()
 	printf("10. asinh	11. acosh	12. atanh\n");
 	printf("0. Back\n");
 	scanf("%d",&ch);
-printf("Enter a number");
-scanf("%f",&num);
+	getchar();
+num=compute();
+
 switch(ch)
 {
 case 1 :printf("sin(%f) = %f\n",num,sin(num));
+answer=sin(num);
 break;
 case 2 :printf("cos(%f) = %f\n",num,cos(num));
+answer=cos(num);
 break;
 case 3 :printf("tan(%f) = %f\n",num,tan(num));
+answer=tan(num);
 break;
 case 4 :printf("asin(%f) = %f\n",num,asin(num));
+answer=asin(num);
 break;
 case 5 :printf("acos(%f) = %f\n",num,acos(num));
+answer=acos(num);
 break;
 case 6 :printf("atan(%f) = %f\n",num,atan(num));
+answer=atan(num);
 break;
 case 7 :printf("sinh(%f) = %f\n",num,sinh(num));
+answer=sinh(num);
 break;
 case 8 :printf("cosh(%f) = %f\n",num,cosh(num));
+answer=cosh(num);
 break;
 case 9 :printf("tanh(%f) = %f\n",num,tanh(num));
+answer=tanh(num);
 break;
 case 10 :printf("asinh(%f) = %f\n",num,asinh(num));
+answer=asinh(num);
 break;
 case 11:printf("acosh(%f) = %f\n",num,acosh(num));
+answer=acosh(num);
 break;
 case 12:printf("atanh(%f) = %f\n",num,atanh(num));
+answer=atanh(num);
 break;
 case 0:
 printf("\n\n");
-display();
+
 break;
 default : printf("Sorry! Invalid choice\n");
 }
+getchar();
+getchar();
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------MATH_FUNC
 
-float math_func()
+void math_func()
 {
 	int ch;float num;
 	printf("Mathematical Fucntions :\n");
 	printf("1. exp		2. log		3. log10\n");
 	printf("4. log2		5. fabs		6. ceil\n");
 	printf("7. trunc	8. floor	9. round\n");
-	printf("10. rand\n");
+	printf("\n");
 	printf("0. Back\n");
 	scanf("%d",&ch);
-printf("Enter a number");
-scanf("%f",&num);
+	getchar();
+num=compute();
 switch(ch)
 {
 case 1 :printf("exp(%f) = %f\n",num,exp(num));
+answer=exp(num);
 break;
 case 2 :printf("log(%f) = %f\n",num,log(num));
+answer=log(num);
 break;
 case 3 :printf("log10(%f) = %f\n",num,log10(num));
+answer=log10(num);
 break;
 case 4 :printf("log2(%f) = %f\n",num,log2(num));
+answer=log2(num);
 break;
 case 5 :printf("fabs(%f) = %f\n",num,fabs(num));
+answer=fabs(num);
 break;
 case 6 :printf("ceil(%f) = %f\n",num,ceil(num));
+answer=ceil(num);
 break;
 case 7 :printf("trunc(%f) = %f\n",num,trunc(num));
+answer=trunc(num);
 break;
 case 8 :printf("floor(%f) = %f\n",num,floor(num));
+answer=floor(num);
 break;
 case 9 :printf("round(%f) = %f\n",num,round(num));
+answer=round(num);
 break;
 /*case 10 :
 time_t t;
 srand((unsigned time(&t)); 
 printf("rand(%f) = %f\n",num,rand()%num);
+answer=rand()%num;
 break;*/
 case 0:
 printf("\n\n");
-display();
 break;
 default : printf("Sorry! Invalid choice\n");
 }
+getchar();
+getchar();
 }
 //------------------------------------------------------------------------------------------------------------------PERMUTATION & COMBINATION
 
@@ -140,35 +175,45 @@ float pnc()
 	printf("1. permuatation	2. combination	3. factorial\n");
 	printf("0. Back\n");
 	scanf("%d",&ch);
+	getchar();
 switch(ch)
 {
 case 1 :
-printf("Enter n and r corresponding to nPr");
+printf("Enter n and r corresponding to nPr\n");
 scanf("%d %d",&n,&r);
 if(n>=r)
+{
 printf("%dP%d = %d\n",n,r,factorial(n)/factorial(n-r));
+answer=factorial(n)/factorial(n-r);
+}
 else
-printf("Math Error!");
+printf("Math Error!\n");
 break;
 case 2 :
-printf("Enter n and r corresponding to nCr");
+printf("Enter n and r corresponding to nCr\n");
 scanf("%d %d",&n,&r);
 if(n>=r)
+{
 printf("%dP%d = %d\n",n,r,factorial(n)/(factorial(n-r)*factorial(r)));
+answer=factorial(n)/(factorial(n-r)*factorial(r));
+}
 else
-printf("Math Error!");
+printf("Math Error!\n");
 break;
 case 3 :
-printf("Enter a number");
+printf("Enter a number\n");
 scanf("%d",&num);
 printf("%d! = %d\n",num,factorial(num));
+answer=factorial(num);
 break;
 case 0:;
 break;
 default : printf("Sorry! Invalid choice\n");
 }
+getchar();
+getchar();
 }
-//---------------------------------------------------------------------------------------------------------------------MATRIX
+//---------------------------------------------------------------------------------------------------------------------OPERATION
 
 
 float operation(float a,float b,char optr)
@@ -180,13 +225,31 @@ return b-a;
 else if(optr=='*')
 return b*a;
 else if(optr=='/')
-return b/a;
-else if(optr=='^')
-return pow(b,a);
-else if(optr=='%')
-return fmod(b,a);
+{
+	if(a!=0)
+	return b/a;
+	else 
+	printf("I don't play with infinities");
+	return 0;
 }
-
+else if(optr=='^')
+{
+	if(a==0 && b==0)
+	{
+	printf("Are you serious 0^0");
+	return 0;
+	}
+	else
+	return pow(b,a);
+}
+else if(optr=='%')
+{
+	if(a==0)
+	printf("No ways! mod used incorrectly");
+	else
+	return fmod(b,a);
+}
+}
 
 
 
@@ -288,7 +351,7 @@ float topt(stack * t)
 
 
 
-void compute()
+float compute()
 {
 stack s,t;
 float y,z;
@@ -298,7 +361,7 @@ float num=0.0,deci=1.0;
 inits(&s);
 initt(&t);
 
-printf("\nEnter expression:");
+printf("\nEnter expression(or number) use 'a' for accessing answer: \n");
 
   while(1)
   {
@@ -308,13 +371,16 @@ printf("\nEnter expression:");
 	{
 		if(prevtok==')')
 		break;
-		else if(prevtok<='9' && prevtok>='0')
+		else if((prevtok<='9' && prevtok>='0')||prevtok=='a'||prevtok=='A')
 		{
 		pusht(&t,num);
 		break;
 		}
 		else if(prevtok!='q')
+		{
 		printf("Syntax Error");
+		break;
+		}
 	}
 	
 	if((token<='9' && token>='0')||(token=='.'))
@@ -333,7 +399,9 @@ printf("\nEnter expression:");
 		num=num*10+(token-'0');	
 	
 	}
-
+	else if(token=='a' || token=='A')
+	num=answer;
+	
 	else if(token=='(')
 	{
 		pushs(&s,'(');
@@ -383,42 +451,39 @@ printf("\nEnter expression:");
 	pusht(&t,operation(y,z,x));
 
   }
-printf("%f", topt(&t));
+printf("\t = %f\n",topt(&t));
+return topt(&t);
+
 
 }
 
 int main()
 {
-int ch;
+char ch='1';
 
 printf("---------------------------------------------------------\n");
 printf("                      SCIENTIFIC CALCULATOR              \n");
 printf("---------------------------------------------------------\n");
 
+while(ch!='0')
+{
 ch=display();
 switch(ch)
 {
-case 1 :user_manual();
+case '1' :user_manual();
 break;
-case 2 :compute();
+case '2' :answer=compute();
 break;
-case 3 :trigo();
+case '3' :trigo();
 break;
-case 4 :math_func();
+case '4' :math_func();
 break;
-/*case 5 :matrix();
+case '5' :pnc();
 break;
-case 6 :equation();
-break;
-case 7 :convertor();
-break;
-case 8 :complex();
-break;*/
-case 9 :pnc();
-break;
-case 0 :printf(".......Bye!");
+case '0' :printf(".......Bye!");
 break;
 default : printf("Sorry! Invalid choice\n");
+}
 }
 }
 
