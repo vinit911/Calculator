@@ -1,6 +1,6 @@
 # Calculator
+Coded by VINIT KUMAR SINGH (vinitsingh@gmail.com).
 
-All copyrights reserved with VINIT KUMAR SINGH (vinitsingh@gmail.com).
 This is a scientific calcultor which can easily compute value of an entered expression and also implements BODMAS rule
 i.e. (2.0+3.0)*4.0/5.0+2.0 will result into 6.0.
 You can use operators  +,-,*,/,mod,^,(,) .
